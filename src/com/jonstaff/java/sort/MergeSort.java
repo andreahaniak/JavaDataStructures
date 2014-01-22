@@ -6,31 +6,22 @@ package com.jonstaff.java.sort;
 public class MergeSort {
 
 	public static void main(String[] args) {
-		int[] unsortedList = {7, 2, 9, 3, 8, 6, 11, 4, 1, 5, 10, 15, 16, 14, 12, 13};
+		int[] list = {7, 2, 9, 3, 8, 6, 11, 4, 1, 5, 10, 15, 16, 14, 12, 13};
 
-        System.out.println("The list unsorted:");
-        for (int x : unsortedList) {
-            System.out.println(x);
-        }
+		System.out.println("The list unsorted:");
+		for (int x : list) {
+			System.out.println(x);
+		}
 
-        sort(unsortedList);
-//		int[] sortedList = sort(unsortedList);
+		sort(list);
 
-        System.out.println("The list unsorted:");
-        for (int x : unsortedList) {
-            System.out.println(x);
-        }
-
-//		System.out.println("\nAnd the list sorted:");
-//		for (int x : sortedList) {
-//			System.out.println(x);
-//		}
+		System.out.println("\n And the list sorted:");
+		for (int x : list) {
+			System.out.println(x);
+		}
 	}
 
-	public static int[] sort(int array[])
-	// pre: array is full, all elements are valid integers (not null)
-	// post: array is sorted in ascending order (lowest to highest)
-	{
+	public static void sort(int array[]) {
 		// if the array has more than 1 element, we need to split it and merge the sorted halves
 		if (array.length > 1) {
 			// number of elements in sub-array 1
@@ -44,16 +35,16 @@ public class MergeSort {
 			int arr1[] = new int[elementsInA1];
 			int arr2[] = new int[elementsInA2];
 			// copy the first part of 'array' into 'arr1', causing arr1 to become full
-			for (int i = 0; i < elementsInA1; i++)
+			for (int i = 0; i < elementsInA1; i++) {
 				arr1[i] = array[i];
+            }
 			// copy the remaining elements of 'array' into 'arr2', causing arr2 to become full
-			for (int i = elementsInA1; i < elementsInA1 + elementsInA2; i++)
-				arr2[i - elementsInA1] = array[i];
-			// recursively call mergeSort on each of the two sub-arrays that we've just created
-			// note: when mergeSort returns, arr1 and arr2 will both be sorted!
-			// it's not magic, the merging is done below, that's how mergesort works :)
-			arr1 = sort(arr1);
-			arr2 = sort(arr2);
+			for (int i = elementsInA1; i < elementsInA1 + elementsInA2; i++) {
+                arr2[i - elementsInA1] = array[i];
+            }
+
+            sort(arr1);
+            sort(arr2);
 
 			// the three variables below are indexes that we'll need for merging
 			// [i] stores the index of the main array. it will be used to let us
@@ -78,13 +69,11 @@ public class MergeSort {
 				// if the current element of arr2 is less than current element of arr1
 				else {
 					// copy the current element of arr1 into the final array
-					array[i] = arr2[k];
+					array[i++] = arr2[k++];
 					// increase the index of the final array to avoid replacing the element
 					// which we've just added
-					i++;
 					// increase the index of arr2 to avoid comparing the element
 					// which we've just added
-					k++;
 				}
 			}
 			// at this point, one of the sub-arrays has been exhausted and there are no more
@@ -92,17 +81,11 @@ public class MergeSort {
 			// array are the highest (and sorted), so it's safe to copy them all into the
 			// final array.
 			while (arr1.length != j) {
-				array[i] = arr1[j];
-				i++;
-				j++;
+				array[i++] = arr1[j++];
 			}
 			while (arr2.length != k) {
-				array[i] = arr2[k];
-				i++;
-				k++;
+				array[i++] = arr2[k++];
 			}
 		}
-		// return the sorted array to the caller of the function
-		return array;
 	}
 }
