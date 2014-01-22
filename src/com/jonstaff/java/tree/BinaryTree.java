@@ -1,10 +1,30 @@
 package com.jonstaff.java.tree;
 
 //  Created by jonstaff on 1/22/14.
-
+//  Adapted from http://www.youtube.com/watch?v=M6lYob8STMI
 public class BinaryTree {
 
 	private Node root;
+
+    public static void main(String[] args) {
+        System.out.println("the program is starting");
+
+        BinaryTree tree = new BinaryTree();
+
+        tree.addNode(1, "Jonathon");
+        tree.addNode(10, "Paul");
+        tree.addNode(9, "Viddi");
+        tree.addNode(51, "Chloe");
+        tree.addNode(67, "Bob");
+        tree.addNode(98, "Sam");
+        tree.addNode(13, "Jim");
+        tree.addNode(8, "John");
+        tree.addNode(23, "Jack");
+        tree.addNode(91, "Jill");
+        tree.addNode(18, "Betty");
+
+        tree.inOrderTraversal(tree.root);
+    }
 
 	public void addNode(int key, Object value) {
 		Node newNode = new Node(key, value);
@@ -64,27 +84,6 @@ public class BinaryTree {
 			System.out.println(focusNode);
 		}
 	}
-
-	public static void main(String[] args) {
-		System.out.println("the program is starting");
-
-		BinaryTree tree = new BinaryTree();
-
-		tree.addNode(1, "Jonathon");
-		tree.addNode(10, "Paul");
-		tree.addNode(9, "Viddi");
-		tree.addNode(51, "Chloe");
-		tree.addNode(67, "Bob");
-		tree.addNode(98, "Sam");
-		tree.addNode(13, "Jim");
-		tree.addNode(8, "John");
-		tree.addNode(23, "Jack");
-		tree.addNode(91, "Jill");
-		tree.addNode(18, "Betty");
-
-		tree.inOrderTraversal(tree.root);
-	}
-
 }
 
 class Node {
