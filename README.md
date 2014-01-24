@@ -7,11 +7,11 @@ Topics I intend to cover (this will be updated and links added as I complete the
 
 - Algorithm Complexity (Big-O)
 - Sorting
-  - Quicksort
-  - Mergesort
+  - [Quicksort](https://github.com/jonstaff/JavaDataStructures/blob/master/src/com/jonstaff/java/sort/QuickSort.java)
+  - [Mergesort](https://github.com/jonstaff/JavaDataStructures/blob/master/src/com/jonstaff/java/sort/MergeSort.java)
 - Hashtables
 - Trees
-  - Binary
+  - [Binary](https://github.com/jonstaff/JavaDataStructures/blob/master/src/com/jonstaff/java/tree/BinaryTree.java)
   - n-ary
   - Trie-trees
   - Balanced binary
