@@ -43,7 +43,7 @@ public class HashTable<V> {
 		int oldIndex;						// Used to record old index if entry was already there
 
 		// First extract the hash key
-		int hashKey = this.hashFunction.hash(key);
+		int hashKey = (int) hashFunction.hash(key);
 
 		/*
 		 * Even with never returning a negative number in getHashCode method, there are a few times when (...?!?) the hashKey still comes up as negative The
@@ -77,7 +77,7 @@ public class HashTable<V> {
 		// First extract the hash key and
 		// Grab the bucket with that key
 		// (Not necessary, but makes future code more legible
-		LinkedList<HashEntry> tempLL = buckets.get(this.hashFunction.hash(key));
+		LinkedList<HashEntry> tempLL = buckets.get((int) hashFunction.hash(key));
 
 		// Then dig out the entry from the bucket and return it if it matches the key
 		for (i = 0; i < tempLL.size(); i++)
@@ -104,14 +104,14 @@ public class HashTable<V> {
 		// First extract the hash key and
 		// Grab the bucket with that key
 		// (Not necessary, but makes future code more legible
-		LinkedList<HashEntry> tempLL = buckets.get(this.hashFunction.hash(key));
+		LinkedList<HashEntry> tempLL = buckets.get((int) hashFunction.hash(key));
 
 		for (i = 0; i < tempLL.size(); i++)
 			if (tempLL.get(i).getKey() == key) {
 				// Extract value
 				returnValue = tempLL.get(i).getValue();
 				// Remove it
-				buckets.get(this.hashFunction.hash(key)).remove(i);
+				buckets.get((int) hashFunction.hash(key)).remove(i);
 				itemCount--;
 			}
 
