@@ -6,26 +6,6 @@ public class BinaryTree {
 
 	private Node root;
 
-    public static void main(String[] args) {
-        System.out.println("the program is starting");
-
-        BinaryTree tree = new BinaryTree();
-
-        tree.addNode(1, "Jonathon");
-        tree.addNode(10, "Paul");
-        tree.addNode(9, "Viddi");
-        tree.addNode(51, "Chloe");
-        tree.addNode(67, "Bob");
-        tree.addNode(98, "Sam");
-        tree.addNode(13, "Jim");
-        tree.addNode(8, "John");
-        tree.addNode(23, "Jack");
-        tree.addNode(91, "Jill");
-        tree.addNode(18, "Betty");
-
-        tree.inOrderTraversal(tree.root);
-    }
-
 	public void addNode(int key, Object value) {
 		Node newNode = new Node(key, value);
 
@@ -43,7 +23,6 @@ public class BinaryTree {
 
 					if (focus == null) {
 						parent.leftChild = newNode;
-						System.out.println("Node added");
 						return;
 					}
 				} else {
@@ -51,14 +30,11 @@ public class BinaryTree {
 
 					if (focus == null) {
 						parent.rightChild = newNode;
-						System.out.println("Node added");
 						return;
 					}
 				}
 			}
 		}
-
-		System.out.println("Node added");
 	}
 
 	public void inOrderTraversal(Node focusNode) {
@@ -83,6 +59,10 @@ public class BinaryTree {
 			postOrderTraversal(focusNode.rightChild);
 			System.out.println(focusNode);
 		}
+	}
+
+	public Node getRoot() {
+		return root;
 	}
 }
 

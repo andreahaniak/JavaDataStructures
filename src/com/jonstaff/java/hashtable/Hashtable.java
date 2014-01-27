@@ -6,16 +6,18 @@ package com.jonstaff.java.hashtable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class HashTable<V> {
+public class Hashtable<V> {
 
 	private ArrayList<LinkedList<HashEntry>> buckets;
 	private HashFunction hashFunction;
-	int itemCount = 0;
+    private int numBuckets;
+	private int itemCount = 0;
 
-	public HashTable(int numBuckets, HashFunction hashFunction) {
+	public Hashtable(int numBuckets, HashFunction hashFunction) {
 
 		buckets = new ArrayList<LinkedList<HashEntry>>(numBuckets);
 
+        this.numBuckets = numBuckets;
 		this.hashFunction = hashFunction;
 
 		for (int i = 0; i < numBuckets; i++) {
@@ -34,7 +36,7 @@ public class HashTable<V> {
 	public void put(String key, V value) {
 		int oldIndex;
 
-		int hashKey = (int) hashFunction.hash(key);
+		int hashKey = (int) hashFunction.hash(key) % numBuckets;
 
 		if (hashKey < 0) {
 			hashKey = -hashKey;
@@ -58,7 +60,7 @@ public class HashTable<V> {
 	 * @return The value associated with the provided key (and null if the key could not be found in the hash table)
 	 */
 	public V get(String key) {
-		LinkedList<HashEntry> chain = buckets.get((int) hashFunction.hash(key));
+		LinkedList<HashEntry> chain = buckets.get((int) hashFunction.hash(key) % numBuckets);
 
 		for (int i = 0; i < chain.size(); i++) {
 			if (chain.get(i).getKey().equals(key)) {
@@ -77,21 +79,21 @@ public class HashTable<V> {
 	 * @return The value associated with the provided key, and null if no match is found.
 	 */
 	public V remove(String key) {
-		LinkedList<HashEntry> chain = buckets.get((int) hashFunction.hash(key));
+		V returnValue = null;
+        LinkedList<HashEntry> chain = buckets.get((int) hashFunction.hash(key) % numBuckets);
 
 		for (int i = 0; i < chain.size(); i++) {
 			if (chain.get(i).getKey().equals(key)) {
-				buckets.get((int) hashFunction.hash(key)).remove(i);
-				itemCount--;
-				return chain.get(i).getValue();
+                returnValue = chain.get(i).getValue();
+                buckets.get((int) hashFunction.hash(key) % numBuckets).remove(i);
+                itemCount--;
 			}
 		}
 
-		return null;
+		return returnValue;
 	}
 
-	public int countCollisions(int numBuckets) {
-		// Number of collisions encountered in the Hash table (for Q3e)
+	public int countCollisions() {
 		int collisions = 0;
 
 		for (int i = 0; i < numBuckets; i++) {
@@ -107,11 +109,6 @@ public class HashTable<V> {
 		return buckets.get(bucketNumber).size();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < buckets.size(); i++) {

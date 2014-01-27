@@ -5,22 +5,6 @@ package com.jonstaff.java.sort;
 
 public class MergeSort {
 
-	public static void main(String[] args) {
-		int[] list = {7, 2, 9, 3, 8, 6, 11, 4, 1, 5, 10, 15, 16, 14, 12, 13};
-
-		System.out.println("The list unsorted:");
-		for (int x : list) {
-			System.out.println(x);
-		}
-
-		sort(list);
-
-		System.out.println("\n And the list sorted:");
-		for (int x : list) {
-			System.out.println(x);
-		}
-	}
-
 	public static void sort(int array[]) {
 		// if the array has more than 1 element, we need to split it and merge the sorted halves
 		if (array.length > 1) {
