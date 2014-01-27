@@ -8,27 +8,19 @@ import java.util.LinkedList;
 
 public class HashTable<V> {
 
-	// A list of buckets to store the key-value pairs in; we are using
-	ArrayList<LinkedList<HashEntry>> buckets;
-
-	// The hash function to use to convert keys to integers
-	HashFunction hashFunction;
-
-	// The number of entries stored in this hash table
+	private ArrayList<LinkedList<HashEntry>> buckets;
+	private HashFunction hashFunction;
 	int itemCount = 0;
 
 	public HashTable(int numBuckets, HashFunction hashFunction) {
 
-		// Create the buckets
 		buckets = new ArrayList<LinkedList<HashEntry>>(numBuckets);
 
-		// Record the hash function to use
 		this.hashFunction = hashFunction;
 
-		// Fill the buckets with empty Linked lists
-		for (int i = 0; i < numBuckets; i++)
+		for (int i = 0; i < numBuckets; i++) {
 			buckets.add(new LinkedList<HashEntry>());
-
+		}
 	}
 
 	/**
@@ -40,28 +32,22 @@ public class HashTable<V> {
 	 *            The value to add
 	 */
 	public void put(String key, V value) {
-		int oldIndex;						// Used to record old index if entry was already there
+		int oldIndex;
 
-		// First extract the hash key
 		int hashKey = (int) hashFunction.hash(key);
 
-		/*
-		 * Even with never returning a negative number in getHashCode method, there are a few times when (...?!?) the hashKey still comes up as negative The
-		 * following is a measure to stop those situations from making the program crash and do not affect any "normal" operating conditions.
-		 */
-		if (hashKey < 0)
+		if (hashKey < 0) {
 			hashKey = -hashKey;
+		}
 
-		// Create the hash entry object
 		HashEntry newEntry = new HashEntry(key, value);
 
-		// Add the element by appending or overwriting
 		if ((oldIndex = buckets.get(hashKey).indexOf(newEntry)) == -1) {
 			buckets.get(hashKey).add(newEntry);
 			itemCount++;
-		} else
+		} else {
 			buckets.get(hashKey).set(oldIndex, newEntry);
-
+		}
 	}
 
 	/**
@@ -72,19 +58,14 @@ public class HashTable<V> {
 	 * @return The value associated with the provided key (and null if the key could not be found in the hash table)
 	 */
 	public V get(String key) {
-		int i;						// Random counter index
+		LinkedList<HashEntry> chain = buckets.get((int) hashFunction.hash(key));
 
-		// First extract the hash key and
-		// Grab the bucket with that key
-		// (Not necessary, but makes future code more legible
-		LinkedList<HashEntry> tempLL = buckets.get((int) hashFunction.hash(key));
+		for (int i = 0; i < chain.size(); i++) {
+			if (chain.get(i).getKey().equals(key)) {
+				return chain.get(i).getValue();
+			}
+		}
 
-		// Then dig out the entry from the bucket and return it if it matches the key
-		for (i = 0; i < tempLL.size(); i++)
-			if (tempLL.get(i).getKey() == key)
-				return tempLL.get(i).getValue();
-
-		// Otherwise, return null
 		return null;
 	}
 
@@ -93,50 +74,35 @@ public class HashTable<V> {
 	 * 
 	 * @param key
 	 *            The key to remove
-	 * @return The value associated with the provided key
+	 * @return The value associated with the provided key, and null if no match is found.
 	 */
 	public V remove(String key) {
-		int i;						// Random counter index
-		V returnValue = null;				// Hold the return value
+		LinkedList<HashEntry> chain = buckets.get((int) hashFunction.hash(key));
 
-		//System.out.println("Removing: "+key);
-
-		// First extract the hash key and
-		// Grab the bucket with that key
-		// (Not necessary, but makes future code more legible
-		LinkedList<HashEntry> tempLL = buckets.get((int) hashFunction.hash(key));
-
-		for (i = 0; i < tempLL.size(); i++)
-			if (tempLL.get(i).getKey() == key) {
-				// Extract value
-				returnValue = tempLL.get(i).getValue();
-				// Remove it
+		for (int i = 0; i < chain.size(); i++) {
+			if (chain.get(i).getKey().equals(key)) {
 				buckets.get((int) hashFunction.hash(key)).remove(i);
 				itemCount--;
+				return chain.get(i).getValue();
 			}
+		}
 
-		return returnValue;
+		return null;
 	}
 
-	/*
-	 * Function to count the number of collisions when varying parameters. Returns the number of collisions in the hash table by counting the depth of the
-	 * buckets
-	 */
 	public int countCollisions(int numBuckets) {
 		// Number of collisions encountered in the Hash table (for Q3e)
 		int collisions = 0;
 
 		for (int i = 0; i < numBuckets; i++) {
-			if (buckets.get(i).size() > 1)
+			if (buckets.get(i).size() > 1) {
 				collisions += buckets.get(i).size() - 1;
+			}
 		}
 
 		return collisions;
 	}
 
-	/*
-	 * Function to look at the spread of values. Returns the depth of the buckets called.
-	 */
 	public int findDepthOfBucket(int bucketNumber) {
 		return buckets.get(bucketNumber).size();
 	}
