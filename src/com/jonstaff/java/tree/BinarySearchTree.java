@@ -39,7 +39,11 @@ public class BinarySearchTree {
 	}
 
 	public void printTree() {
-
+		if (isEmpty()) {
+			System.out.println("The tree is empty.");
+		} else {
+			printTree(root);
+		}
 	}
 
 	//     ____       _            _         __  __      _   _               _
@@ -115,12 +119,12 @@ public class BinarySearchTree {
 		return node;
 	}
 
-	private BinaryNode removeMin(BinaryNode node) {
-		return null;
-	}
-
-	private void printTree(BinarySearchTree tree) {
-
+	private void printTree(BinaryNode node) {
+		if (node != null) {
+			printTree(node.left);
+			System.out.println(node.element);
+			printTree(node.right);
+		}
 	}
 }
 
