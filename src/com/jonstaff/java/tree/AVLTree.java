@@ -3,7 +3,50 @@ package com.jonstaff.java.tree;
 //  Created by jonstaff on 2/1/14.
 //  Adapted from Data Structures & Algorithm Analysis in Java by Mark Allen Weiss
 
-public class AvlTree {
+public class AvlTree extends BinaryTree {
+
+	//     ____  _                       _____                __  __      _   _               _
+	//    | __ )(_)_ __   __ _ _ __ _   |_   _| __ ___  ___  |  \/  | ___| |_| |__   ___   __| |___
+	//    |  _ \| | '_ \ / _` | '__| | | || || '__/ _ \/ _ \ | |\/| |/ _ \ __| '_ \ / _ \ / _` / __|
+	//    | |_) | | | | | (_| | |  | |_| || || | |  __/  __/ | |  | |  __/ |_| | | | (_) | (_| \__ \
+	//    |____/|_|_| |_|\__,_|_|   \__, ||_||_|  \___|\___| |_|  |_|\___|\__|_| |_|\___/ \__,_|___/
+	//                              |___/
+
+	@Override
+	public Comparable find(Comparable x) {
+		return null;
+	}
+
+	@Override
+	public Comparable findMin() {
+		return null;
+	}
+
+	@Override
+	public Comparable findMax() {
+		return null;
+	}
+
+	@Override
+	public void insert(Comparable x) {
+
+	}
+
+	@Override
+	public void remove(Comparable x) {
+
+	}
+
+	@Override
+	public void printTree() {
+
+	}
+
+	//     ____       _            _         __  __      _   _               _
+	//    |  _ \ _ __(_)_   ____ _| |_ ___  |  \/  | ___| |_| |__   ___   __| |___
+	//    | |_) | '__| \ \ / / _` | __/ _ \ | |\/| |/ _ \ __| '_ \ / _ \ / _` / __|
+	//    |  __/| |  | |\ V / (_| | ||  __/ | |  | |  __/ |_| | | | (_) | (_| \__ \
+	//    |_|   |_|  |_| \_/ \__,_|\__\___| |_|  |_|\___|\__|_| |_|\___/ \__,_|___/
 
 	private static int heightOf(AvlNode t) {
 		return t == null ? -1 : t.height;
@@ -66,8 +109,6 @@ public class AvlTree {
 		k3.right = rotateWithLeftChild(k3.right);
 		return rotateWithRightChild(k3);
 	}
-
-	// TODO: deletion
 }
 
 class AvlNode {
