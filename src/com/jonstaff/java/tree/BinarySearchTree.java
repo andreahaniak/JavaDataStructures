@@ -4,7 +4,7 @@ package com.jonstaff.java.tree;
 //  Adapted from Data Structures & Algorithm Analysis in Java by Mark Allen Weiss
 
 public class BinarySearchTree {
-	private Node root;
+	private BinaryNode root;
 
 	public BinarySearchTree() {
 		root = null;
@@ -52,11 +52,11 @@ public class BinarySearchTree {
 	//    |  __/| |  | |\ V / (_| | ||  __/ | |  | |  __/ |_| | | | (_) | (_| \__ \
 	//    |_|   |_|  |_| \_/ \__,_|\__\___| |_|  |_|\___|\__|_| |_|\___/ \__,_|___/
 
-	private Comparable elementAt(Node t) {
+	private Comparable elementAt(BinaryNode t) {
 		return t == null ? null : t.element;
 	}
 
-	private Node find(Comparable x, Node t) {
+	private BinaryNode find(Comparable x, BinaryNode t) {
 		if (t == null) {
 			return null;
 		}
@@ -70,7 +70,7 @@ public class BinarySearchTree {
 		}
 	}
 
-	private Node findMin(Node t) {
+	private BinaryNode findMin(BinaryNode t) {
 		if (t != null) {
 			while (t.left != t) {
 				t = t.left;
@@ -80,7 +80,7 @@ public class BinarySearchTree {
 		return t;
 	}
 
-	private Node findMax(Node t) {
+	private BinaryNode findMax(BinaryNode t) {
 		if (t != null) {
 			while (t.right != t) {
 				t = t.right;
@@ -90,9 +90,9 @@ public class BinarySearchTree {
 		return t;
 	}
 
-	private Node insert(Comparable x, Node t) {
+	private BinaryNode insert(Comparable x, BinaryNode t) {
 		if (t == null) {
-			return new Node(x, null, null);
+			return new BinaryNode(x, null, null);
 		} else if (x.compareTo(t.element) < 0) {
 			t.left = insert(x, t.left);
 		} else if (x.compareTo(t.element) > 0) {
@@ -102,7 +102,7 @@ public class BinarySearchTree {
 		return t;
 	}
 
-	private Node remove(Comparable x, Node t) {
+	private BinaryNode remove(Comparable x, BinaryNode t) {
 		if (t == null) {
 			return null;
 		}
@@ -119,7 +119,7 @@ public class BinarySearchTree {
 		return t;
 	}
 
-	private void printTree(Node t) {
+	private void printTree(BinaryNode t) {
 		if (t != null) {
 			printTree(t.left);
 			System.out.println(t.element);
@@ -135,16 +135,15 @@ public class BinarySearchTree {
 //        |____/|_|_| |_|\__,_|_|   \__, |_| \_|\___/ \__,_|\___|
 //                                  |___/
 
-class Node {
+class BinaryNode {
 	Comparable element;
-	Node left;
-	Node right;
+	BinaryNode left, right;
 
-	Node(Comparable element) {
+	BinaryNode(Comparable element) {
 		this(element, null, null);
 	}
 
-	Node(Comparable element, Node left, Node right) {
+	BinaryNode(Comparable element, BinaryNode left, BinaryNode right) {
 		this.element = element;
 		this.left = left;
 		this.right = right;
