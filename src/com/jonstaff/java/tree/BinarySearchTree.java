@@ -4,7 +4,7 @@ package com.jonstaff.java.tree;
 //  Adapted from Data Structures & Algorithm Analysis in Java by Mark Allen Weiss
 
 public class BinarySearchTree {
-	private BinaryNode root;
+	private Node root;
 
 	public BinarySearchTree() {
 		root = null;
@@ -52,78 +52,78 @@ public class BinarySearchTree {
 	//    |  __/| |  | |\ V / (_| | ||  __/ | |  | |  __/ |_| | | | (_) | (_| \__ \
 	//    |_|   |_|  |_| \_/ \__,_|\__\___| |_|  |_|\___|\__|_| |_|\___/ \__,_|___/
 
-	private Comparable elementAt(BinaryNode node) {
-		return node == null ? null : node.element;
+	private Comparable elementAt(Node t) {
+		return t == null ? null : t.element;
 	}
 
-	private BinaryNode find(Comparable x, BinaryNode node) {
-		if (node == null) {
+	private Node find(Comparable x, Node t) {
+		if (t == null) {
 			return null;
 		}
 
-		if (x.compareTo(node.element) < 0) {
-			return find(x, node.left);
-		} else if (x.compareTo(node.element) > 0) {
-			return find(x, node.right);
+		if (x.compareTo(t.element) < 0) {
+			return find(x, t.left);
+		} else if (x.compareTo(t.element) > 0) {
+			return find(x, t.right);
 		} else {
-			return node;
+			return t;
 		}
 	}
 
-	private BinaryNode findMin(BinaryNode node) {
-		if (node != null) {
-			while (node.left != node) {
-				node = node.left;
+	private Node findMin(Node t) {
+		if (t != null) {
+			while (t.left != t) {
+				t = t.left;
 			}
 		}
 
-		return node;
+		return t;
 	}
 
-	private BinaryNode findMax(BinaryNode node) {
-		if (node != null) {
-			while (node.right != node) {
-				node = node.right;
+	private Node findMax(Node t) {
+		if (t != null) {
+			while (t.right != t) {
+				t = t.right;
 			}
 		}
 
-		return node;
+		return t;
 	}
 
-	private BinaryNode insert(Comparable x, BinaryNode node) {
-		if (node == null) {
-			return new BinaryNode(x, null, null);
-		} else if (x.compareTo(node.element) < 0) {
-			node.left = insert(x, node.left);
-		} else if (x.compareTo(node.element) > 0) {
-			node.right = insert(x, node.right);
+	private Node insert(Comparable x, Node t) {
+		if (t == null) {
+			return new Node(x, null, null);
+		} else if (x.compareTo(t.element) < 0) {
+			t.left = insert(x, t.left);
+		} else if (x.compareTo(t.element) > 0) {
+			t.right = insert(x, t.right);
 		}
 
-		return node;
+		return t;
 	}
 
-	private BinaryNode remove(Comparable x, BinaryNode node) {
-		if (node == null) {
+	private Node remove(Comparable x, Node t) {
+		if (t == null) {
 			return null;
 		}
 
-		if (x.compareTo(node.element) < 0) {
-			node.left = remove(x, node.left);
-		} else if (node.left != null && node.right != null) {
-			node.element = findMin(node.right).element;
-			node.right = remove(x, node.right);
+		if (x.compareTo(t.element) < 0) {
+			t.left = remove(x, t.left);
+		} else if (t.left != null && t.right != null) {
+			t.element = findMin(t.right).element;
+			t.right = remove(x, t.right);
 		} else {
-			node = node.left != null ? node.left : node.right;
+			t = t.left != null ? t.left : t.right;
 		}
 
-		return node;
+		return t;
 	}
 
-	private void printTree(BinaryNode node) {
-		if (node != null) {
-			printTree(node.left);
-			System.out.println(node.element);
-			printTree(node.right);
+	private void printTree(Node t) {
+		if (t != null) {
+			printTree(t.left);
+			System.out.println(t.element);
+			printTree(t.right);
 		}
 	}
 }
@@ -135,16 +135,16 @@ public class BinarySearchTree {
 //        |____/|_|_| |_|\__,_|_|   \__, |_| \_|\___/ \__,_|\___|
 //                                  |___/
 
-class BinaryNode {
+class Node {
 	Comparable element;
-	BinaryNode left;
-	BinaryNode right;
+	Node left;
+	Node right;
 
-	BinaryNode(Comparable element) {
+	Node(Comparable element) {
 		this(element, null, null);
 	}
 
-	BinaryNode(Comparable element, BinaryNode left, BinaryNode right) {
+	Node(Comparable element, Node left, Node right) {
 		this.element = element;
 		this.left = left;
 		this.right = right;
