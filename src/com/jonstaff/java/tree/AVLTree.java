@@ -17,10 +17,25 @@ public class AvlTree {
 
 			if (heightOf(t.left) - heightOf(t.right) == 2) {
 				if (x.compareTo(t.left.element) < 0) {
-                    t = 
+					t = rotateWithLeftChild(t);
+				} else {
+					t = doubleWithLeftChild(t);
+				}
+			}
+		} else if (x.compareTo(t.element) > 0) {
+			t.right = insert(x, t.right);
+
+			if (heightOf(t.right) - heightOf(t.left) == 2) {
+				if (x.compareTo(t.right.element) > 0) {
+					t = rotateWithRightChild(t);
+				} else {
+					t = doubleWithRightChild(t);
 				}
 			}
 		}
+
+		t.height = Math.max(heightOf(t.left), heightOf(t.right)) + 1;
+		return t;
 	}
 
 	private static AvlNode rotateWithLeftChild(AvlNode k2) {
@@ -52,7 +67,7 @@ public class AvlTree {
 		return rotateWithRightChild(k3);
 	}
 
-    // TODO: deletion
+	// TODO: deletion
 }
 
 class AvlNode {
