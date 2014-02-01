@@ -3,7 +3,7 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class JSHash implements HashFunction {
+public class JsHash implements HashFunction {
 	@Override
 	public long hash(String key) {
 		long hash = 1315423911;

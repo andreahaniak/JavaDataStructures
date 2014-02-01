@@ -2,7 +2,7 @@ package com.jonstaff.java.example;
 
 //  Created by jonstaff on 1/27/14.
 
-import com.jonstaff.java.hashtable.ELFHash;
+import com.jonstaff.java.hashtable.ElfHash;
 import com.jonstaff.java.hashtable.Hashtable;
 import com.jonstaff.java.sort.MergeSort;
 import com.jonstaff.java.sort.QuickSort;
@@ -85,7 +85,7 @@ public class ExampleUsage {
         System.out.println("Hashtable Example:");
         System.out.println("---------------------------------------");
 
-        Hashtable table = new Hashtable(20, new ELFHash());
+        Hashtable table = new Hashtable(20, new ElfHash());
 
         table.put("name", "Jonathon");
         table.put("age", 21);

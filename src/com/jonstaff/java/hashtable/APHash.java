@@ -3,7 +3,7 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class APHash implements HashFunction {
+public class ApHash implements HashFunction {
 	@Override
 	public long hash(String key) {
 		long hash = 0xAAAAAAAA;

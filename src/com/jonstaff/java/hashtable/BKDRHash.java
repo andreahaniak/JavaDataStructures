@@ -3,7 +3,7 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class BKDRHash implements HashFunction {
+public class BkdrHash implements HashFunction {
 	@Override
 	public long hash(String key) {
 		long seed = 131; // 31 131 1313 13131 131313 etc..

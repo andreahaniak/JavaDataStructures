@@ -3,7 +3,7 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class FNVHash implements HashFunction {
+public class FnvHash implements HashFunction {
 	@Override
 	public long hash(String key) {
 		long fnv_prime = 0x811C9DC5;

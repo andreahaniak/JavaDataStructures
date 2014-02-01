@@ -3,7 +3,7 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class BPHash implements HashFunction {
+public class BpHash implements HashFunction {
 	@Override
 	public long hash(String key) {
 		long hash = 0;
