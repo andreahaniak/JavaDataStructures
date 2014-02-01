@@ -44,15 +44,6 @@ public class BinarySearchTree extends BinaryTree {
 		root = remove(x, root);
 	}
 
-	@Override
-	public void printTree() {
-		if (isEmpty()) {
-			System.out.println("The tree is empty.");
-		} else {
-			printTree(root);
-		}
-	}
-
 	//     ____       _            _         __  __      _   _               _
 	//    |  _ \ _ __(_)_   ____ _| |_ ___  |  \/  | ___| |_| |__   ___   __| |___
 	//    | |_) | '__| \ \ / / _` | __/ _ \ | |\/| |/ _ \ __| '_ \ / _ \ / _` / __|
@@ -99,7 +90,7 @@ public class BinarySearchTree extends BinaryTree {
 
 	private Node insert(Comparable x, Node t) {
 		if (t == null) {
-			return new Node(x, null, null);
+			return new BinaryNode(x, null, null);
 		} else if (x.compareTo(t.element) < 0) {
 			t.left = insert(x, t.left);
 		} else if (x.compareTo(t.element) > 0) {
@@ -125,12 +116,16 @@ public class BinarySearchTree extends BinaryTree {
 
 		return t;
 	}
+}
 
-	private void printTree(Node t) {
-		if (t != null) {
-			printTree(t.left);
-			System.out.println(t.element);
-			printTree(t.right);
-		}
+class BinaryNode extends Node {
+	BinaryNode(Comparable element) {
+		this(element, null, null);
+	}
+
+	BinaryNode(Comparable element, Node left, Node right) {
+		this.element = element;
+		this.left = left;
+		this.right = left;
 	}
 }

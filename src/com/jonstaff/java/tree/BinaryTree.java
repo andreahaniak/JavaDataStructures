@@ -6,14 +6,6 @@ public abstract class BinaryTree {
 
 	Node root;
 
-	public void makeEmpty() {
-		root = null;
-	}
-
-	public boolean isEmpty() {
-		return root == null;
-	}
-
 	public abstract Comparable find(Comparable x);
 
 	public abstract Comparable findMin();
@@ -24,5 +16,27 @@ public abstract class BinaryTree {
 
 	public abstract void remove(Comparable x);
 
-	public abstract void printTree();
+	public void makeEmpty() {
+		root = null;
+	}
+
+	public boolean isEmpty() {
+		return root == null;
+	}
+
+	public void printTree() {
+		if (isEmpty()) {
+			System.out.println("The tree is empty.");
+		} else {
+			printTree(root);
+		}
+	}
+
+	private void printTree(Node t) {
+		if (t != null) {
+			printTree(t.left);
+			System.out.println(t.element);
+			printTree(t.right);
+		}
+	}
 }
