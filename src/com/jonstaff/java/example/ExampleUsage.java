@@ -6,6 +6,7 @@ import com.jonstaff.java.hashtable.ElfHash;
 import com.jonstaff.java.hashtable.Hashtable;
 import com.jonstaff.java.sort.MergeSort;
 import com.jonstaff.java.sort.QuickSort;
+import com.jonstaff.java.tree.AvlTree;
 import com.jonstaff.java.tree.BinarySearchTree;
 
 public class ExampleUsage {
@@ -13,7 +14,8 @@ public class ExampleUsage {
 	public static void main(String[] args) {
 		runMergeSortExample();
 		runQuickSortExample();
-		runBinaryTreeExample();
+		runBinarySearchTreeExample();
+        runAvlTreeExample();
 		runHashTableExample();
 	}
 
@@ -59,8 +61,8 @@ public class ExampleUsage {
 		System.out.println("---------------------------------------\n\n");
 	}
 
-	private static void runBinaryTreeExample() {
-		System.out.println("BinaryTree Example:");
+	private static void runBinarySearchTreeExample() {
+		System.out.println("BinarySearchTree Example:");
 		System.out.println("---------------------------------------");
 
 		BinarySearchTree tree = new BinarySearchTree();
@@ -83,6 +85,33 @@ public class ExampleUsage {
 
 		System.out.println("---------------------------------------\n\n");
 	}
+
+    private static void runAvlTreeExample() {
+        System.out.println("AvlTree Example:");
+        System.out.println("---------------------------------------");
+
+        AvlTree tree = new AvlTree();
+        tree.insert(17);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(34);
+        tree.insert(112);
+        tree.insert(56);
+        tree.insert(8);
+        tree.insert(40);
+        tree.insert(97);
+        tree.insert(5);
+        tree.insert(117);
+        tree.insert(7);
+        tree.insert(9);
+        tree.insert(113);
+
+        tree.printTree();
+
+        System.out.println("\nPrint the value if found: " + tree.find(5));
+
+        System.out.println("---------------------------------------\n\n");
+    }
 
 	private static void runHashTableExample() {
 		System.out.println("Hashtable Example:");

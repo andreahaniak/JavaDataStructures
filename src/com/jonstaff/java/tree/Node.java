@@ -5,4 +5,9 @@ package com.jonstaff.java.tree;
 public abstract class Node<T> {
 	Comparable element;
 	T left, right;
+
+	@Override
+	public String toString() {
+		return "{Element: " + element + ", Left: " + left + ", Right: " + right + "}";
+	}
 }
