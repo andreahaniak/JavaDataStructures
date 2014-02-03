@@ -44,14 +44,14 @@ public class BinarySearchTree extends BinaryTree<BinaryNode> {
 		root = remove(x, root);
 	}
 
-	@Override
-	protected void printTree(BinaryNode t) {
-		if (t != null) {
-			printTree(t.left);
-			System.out.println(t.element);
-			printTree(t.right);
-		}
-	}
+//	@Override
+//	protected void printTree(BinaryNode t) {
+//		if (t != null) {
+//			printTree(t.left);
+//			System.out.println(t.element);
+//			printTree(t.right);
+//		}
+//	}
 
 	//     ____       _            _         __  __      _   _               _
 	//    |  _ \ _ __(_)_   ____ _| |_ ___  |  \/  | ___| |_| |__   ___   __| |___

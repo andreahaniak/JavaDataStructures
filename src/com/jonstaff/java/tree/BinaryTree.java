@@ -28,9 +28,15 @@ public abstract class BinaryTree<T> {
 		if (isEmpty()) {
 			System.out.println("The tree is empty.");
 		} else {
-			printTree(root);
+			printTree((Node) root);
 		}
 	}
 
-	protected abstract void printTree(T t);
+	private void printTree(Node t) {
+		if (t != null) {
+			printTree((Node) t.left);
+			System.out.println(t.element);
+			printTree((Node) t.right);
+		}
+	}
 }

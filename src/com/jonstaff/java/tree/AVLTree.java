@@ -29,7 +29,7 @@ public class AvlTree extends BinaryTree<AvlNode> {
 
 	@Override
 	public void insert(Comparable x) {
-
+        root = insert(x, root);
 	}
 
 	@Override
@@ -37,14 +37,14 @@ public class AvlTree extends BinaryTree<AvlNode> {
 
 	}
 
-	@Override
-	protected void printTree(AvlNode t) {
-		if (t != null) {
-			printTree(t.left);
-			System.out.println(t.element);
-			printTree(t.right);
-		}
-	}
+//	@Override
+//	protected void printTree(AvlNode t) {
+//		if (t != null) {
+//			printTree(t.left);
+//			System.out.println(t.element);
+//			printTree(t.right);
+//		}
+//	}
 
 	//     ____       _            _         __  __      _   _               _
 	//    |  _ \ _ __(_)_   ____ _| |_ ___  |  \/  | ___| |_| |__   ___   __| |___
@@ -95,10 +95,9 @@ public class AvlTree extends BinaryTree<AvlNode> {
 	}
 
 	private static AvlNode rotateWithRightChild(AvlNode k2) {
-		// TODO: refactor this to work with the right child
-		AvlNode k1 = k2.left;
-		k2.left = k1.right;
-		k1.right = k2;
+		AvlNode k1 = k2.right;
+		k2.right = k1.left;
+		k1.left = k2;
 		k2.height = Math.max(heightOf(k2.left), heightOf(k2.right)) + 1;
 		k1.height = Math.max(heightOf(k1.left), k2.height) + 1;
 		return k1;
