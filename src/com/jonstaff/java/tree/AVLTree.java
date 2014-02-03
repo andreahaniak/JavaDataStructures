@@ -14,37 +14,28 @@ public class AvlTree extends BinaryTree<AvlNode> {
 
 	@Override
 	public Comparable find(Comparable x) {
-		return null;
+		return elementAt(find(x, root));
 	}
 
 	@Override
 	public Comparable findMin() {
-		return null;
+		return elementAt(findMin(root));
 	}
 
 	@Override
 	public Comparable findMax() {
-		return null;
+		return elementAt(findMax(root));
 	}
 
 	@Override
 	public void insert(Comparable x) {
-        root = insert(x, root);
+		root = insert(x, root);
 	}
 
 	@Override
 	public void remove(Comparable x) {
-
+		root = remove(x, root);
 	}
-
-//	@Override
-//	protected void printTree(AvlNode t) {
-//		if (t != null) {
-//			printTree(t.left);
-//			System.out.println(t.element);
-//			printTree(t.right);
-//		}
-//	}
 
 	//     ____       _            _         __  __      _   _               _
 	//    |  _ \ _ __(_)_   ____ _| |_ ___  |  \/  | ___| |_| |__   ___   __| |___
@@ -112,7 +103,68 @@ public class AvlTree extends BinaryTree<AvlNode> {
 		k3.right = rotateWithLeftChild(k3.right);
 		return rotateWithRightChild(k3);
 	}
+
+	private Comparable elementAt(AvlNode t) {
+		return t == null ? null : t.element;
+	}
+
+	private AvlNode find(Comparable x, AvlNode t) {
+		if (t == null) {
+			return null;
+		}
+
+		if (x.compareTo(t.element) < 0) {
+			return find(x, t.left);
+		} else if (x.compareTo(t.element) > 0) {
+			return find(x, t.right);
+		} else {
+			return t;
+		}
+	}
+
+	private AvlNode findMin(AvlNode t) {
+		if (t != null) {
+			while (t.left != t) {
+				t = t.left;
+			}
+		}
+
+		return t;
+	}
+
+	private AvlNode findMax(AvlNode t) {
+		if (t != null) {
+			while (t.right != t) {
+				t = t.right;
+			}
+		}
+
+		return t;
+	}
+
+	private AvlNode remove(Comparable x, AvlNode t) {
+		if (t == null) {
+			return null;
+		}
+
+		if (x.compareTo(t.element) < 0) {
+			t.left = remove(x, t.left);
+		} else if (t.left != null && t.right != null) {
+			t.element = findMin(t.right).element;
+			t.right = remove(x, t.right);
+		} else {
+			t = t.left != null ? t.left : t.right;
+		}
+
+		return t;
+	}
 }
+
+//            _        _ _   _           _
+//           / \__   _| | \ | | ___   __| | ___
+//          / _ \ \ / / |  \| |/ _ \ / _` |/ _ \
+//         / ___ \ V /| | |\  | (_) | (_| |  __/
+//        /_/   \_\_/ |_|_| \_|\___/ \__,_|\___|
 
 class AvlNode extends Node<AvlNode> {
 	int height;

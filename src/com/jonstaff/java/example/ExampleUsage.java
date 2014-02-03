@@ -6,9 +6,7 @@ import com.jonstaff.java.hashtable.ElfHash;
 import com.jonstaff.java.hashtable.Hashtable;
 import com.jonstaff.java.sort.MergeSort;
 import com.jonstaff.java.sort.QuickSort;
-import com.jonstaff.java.tree.BinaryNode;
 import com.jonstaff.java.tree.BinarySearchTree;
-import com.jonstaff.java.tree.BinaryTree;
 
 public class ExampleUsage {
 
@@ -16,7 +14,7 @@ public class ExampleUsage {
 		runMergeSortExample();
 		runQuickSortExample();
 		runBinaryTreeExample();
-        runHashTableExample();
+		runHashTableExample();
 	}
 
 	private static void runMergeSortExample() {
@@ -65,47 +63,47 @@ public class ExampleUsage {
 		System.out.println("BinaryTree Example:");
 		System.out.println("---------------------------------------");
 
-        BinaryTree<BinaryNode> tree = new BinarySearchTree();
-        tree.insert(17);
-        tree.insert(2);
-        tree.insert(1);
-        tree.insert(34);
-        tree.insert(112);
-        tree.insert(56);
-        tree.insert(8);
-        tree.insert(40);
-        tree.insert(97);
-        tree.insert(5);
-        tree.insert(117);
-        tree.insert(7);
-        tree.insert(9);
-        tree.insert(113);
+		BinarySearchTree tree = new BinarySearchTree();
+		tree.insert(17);
+		tree.insert(2);
+		tree.insert(1);
+		tree.insert(34);
+		tree.insert(112);
+		tree.insert(56);
+		tree.insert(8);
+		tree.insert(40);
+		tree.insert(97);
+		tree.insert(5);
+		tree.insert(117);
+		tree.insert(7);
+		tree.insert(9);
+		tree.insert(113);
 
-        tree.printTree();
+		tree.printTree();
 
 		System.out.println("---------------------------------------\n\n");
 	}
 
-    private static void runHashTableExample() {
-        System.out.println("Hashtable Example:");
-        System.out.println("---------------------------------------");
+	private static void runHashTableExample() {
+		System.out.println("Hashtable Example:");
+		System.out.println("---------------------------------------");
 
-        Hashtable table = new Hashtable(20, new ElfHash());
+		Hashtable table = new Hashtable(20, new ElfHash());
 
-        table.put("name", "Jonathon");
-        table.put("age", 21);
-        table.put("mother", "Ann");
-        table.put("father", "Noll");
-        table.put("brother", "Paul");
-        table.put("school", "Bellarmine");
+		table.put("name", "Jonathon");
+		table.put("age", 21);
+		table.put("mother", "Ann");
+		table.put("father", "Noll");
+		table.put("brother", "Paul");
+		table.put("school", "Bellarmine");
 
-        System.out.println(table);
-        System.out.println("\nThere are " + table.countCollisions() + " collisions in the table.");
+		System.out.println(table);
+		System.out.println("\nThere are " + table.countCollisions() + " collisions in the table.");
 
-        System.out.println("\nGetting item for key \"name\": " + table.get("name"));
-        System.out.println("\nRemoving item for key \"school\": " + table.remove("school") + "\n");
+		System.out.println("\nGetting item for key \"name\": " + table.get("name"));
+		System.out.println("\nRemoving item for key \"school\": " + table.remove("school") + "\n");
 
-        System.out.println(table);
-        System.out.println("---------------------------------------\n\n");
-    }
+		System.out.println(table);
+		System.out.println("---------------------------------------\n\n");
+	}
 }
