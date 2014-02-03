@@ -17,7 +17,7 @@ Topics I intend to cover (this will be updated and links added as I complete the
   - Balanced binary
     - Red/black
     - Splay
-    - AVL
+    - [AVL]()
   - Traversal algorithms
     - Breadth first search
     - Depth first search
