@@ -2,9 +2,9 @@ package com.jonstaff.java.tree;
 
 //  Created by jonstaff on 2/1/14.
 
-public abstract class BinaryTree {
+public abstract class BinaryTree<T> {
 
-	Node root;
+	T root;
 
 	public abstract Comparable find(Comparable x);
 
@@ -32,11 +32,5 @@ public abstract class BinaryTree {
 		}
 	}
 
-	private void printTree(Node t) {
-		if (t != null) {
-			printTree(t.left);
-			System.out.println(t.element);
-			printTree(t.right);
-		}
-	}
+	protected abstract void printTree(T t);
 }

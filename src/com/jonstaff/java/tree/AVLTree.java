@@ -3,7 +3,7 @@ package com.jonstaff.java.tree;
 //  Created by jonstaff on 2/1/14.
 //  Adapted from Data Structures & Algorithm Analysis in Java by Mark Allen Weiss
 
-public class AvlTree extends BinaryTree {
+public class AvlTree extends BinaryTree<AvlNode> {
 
 	//     ____  _                       _____                __  __      _   _               _
 	//    | __ )(_)_ __   __ _ _ __ _   |_   _| __ ___  ___  |  \/  | ___| |_| |__   ___   __| |___
@@ -38,8 +38,12 @@ public class AvlTree extends BinaryTree {
 	}
 
 	@Override
-	public void printTree() {
-
+	protected void printTree(AvlNode t) {
+		if (t != null) {
+			printTree(t.left);
+			System.out.println(t.element);
+			printTree(t.right);
+		}
 	}
 
 	//     ____       _            _         __  __      _   _               _
@@ -56,9 +60,9 @@ public class AvlTree extends BinaryTree {
 		if (t == null) {
 			t = new AvlNode(x);
 		} else if (x.compareTo(t.element) < 0) {
-			t.left = insert(x, (AvlNode) t.left);
+			t.left = insert(x, t.left);
 
-			if (heightOf((AvlNode) t.left) - heightOf((AvlNode) t.right) == 2) {
+			if (heightOf(t.left) - heightOf(t.right) == 2) {
 				if (x.compareTo(t.left.element) < 0) {
 					t = rotateWithLeftChild(t);
 				} else {
@@ -66,9 +70,9 @@ public class AvlTree extends BinaryTree {
 				}
 			}
 		} else if (x.compareTo(t.element) > 0) {
-			t.right = insert(x, (AvlNode) t.right);
+			t.right = insert(x, t.right);
 
-			if (heightOf((AvlNode) t.right) - heightOf((AvlNode) t.left) == 2) {
+			if (heightOf(t.right) - heightOf(t.left) == 2) {
 				if (x.compareTo(t.right.element) > 0) {
 					t = rotateWithRightChild(t);
 				} else {
@@ -77,41 +81,41 @@ public class AvlTree extends BinaryTree {
 			}
 		}
 
-		t.height = Math.max(heightOf((AvlNode) t.left), heightOf((AvlNode) t.right)) + 1;
+		t.height = Math.max(heightOf(t.left), heightOf(t.right)) + 1;
 		return t;
 	}
 
 	private static AvlNode rotateWithLeftChild(AvlNode k2) {
-		AvlNode k1 = (AvlNode) k2.left;
+		AvlNode k1 = k2.left;
 		k2.left = k1.right;
 		k1.right = k2;
-		k2.height = Math.max(heightOf((AvlNode) k2.left), heightOf((AvlNode) k2.right)) + 1;
-		k1.height = Math.max(heightOf((AvlNode) k1.left), k2.height) + 1;
+		k2.height = Math.max(heightOf(k2.left), heightOf(k2.right)) + 1;
+		k1.height = Math.max(heightOf(k1.left), k2.height) + 1;
 		return k1;
 	}
 
 	private static AvlNode rotateWithRightChild(AvlNode k2) {
 		// TODO: refactor this to work with the right child
-		AvlNode k1 = (AvlNode) k2.left;
+		AvlNode k1 = k2.left;
 		k2.left = k1.right;
 		k1.right = k2;
-		k2.height = Math.max(heightOf((AvlNode) k2.left), heightOf((AvlNode) k2.right)) + 1;
-		k1.height = Math.max(heightOf((AvlNode) k1.left), k2.height) + 1;
+		k2.height = Math.max(heightOf(k2.left), heightOf(k2.right)) + 1;
+		k1.height = Math.max(heightOf(k1.left), k2.height) + 1;
 		return k1;
 	}
 
 	private static AvlNode doubleWithLeftChild(AvlNode k3) {
-		k3.left = rotateWithRightChild((AvlNode) k3.left);
+		k3.left = rotateWithRightChild(k3.left);
 		return rotateWithLeftChild(k3);
 	}
 
 	private static AvlNode doubleWithRightChild(AvlNode k3) {
-		k3.right = rotateWithLeftChild((AvlNode) k3.right);
+		k3.right = rotateWithLeftChild(k3.right);
 		return rotateWithRightChild(k3);
 	}
 }
 
-class AvlNode extends Node {
+class AvlNode extends Node<AvlNode> {
 	int height;
 
 	AvlNode(Comparable element) {
@@ -120,8 +124,8 @@ class AvlNode extends Node {
 
 	AvlNode(Comparable element, AvlNode left, AvlNode right) {
 		this.element = element;
-		this.left = (AvlNode) left;
-		this.right = (AvlNode) right;
+		this.left = left;
+		this.right = right;
 		height = 0;
 	}
 }

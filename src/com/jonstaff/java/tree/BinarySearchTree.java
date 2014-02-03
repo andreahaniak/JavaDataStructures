@@ -3,7 +3,7 @@ package com.jonstaff.java.tree;
 //  Created by jonstaff on 1/31/14.
 //  Adapted from Data Structures & Algorithm Analysis in Java by Mark Allen Weiss
 
-public class BinarySearchTree extends BinaryTree {
+public class BinarySearchTree extends BinaryTree<BinaryNode> {
 
 	public BinarySearchTree() {
 		root = null;
@@ -44,17 +44,26 @@ public class BinarySearchTree extends BinaryTree {
 		root = remove(x, root);
 	}
 
+	@Override
+	protected void printTree(BinaryNode t) {
+		if (t != null) {
+			printTree(t.left);
+			System.out.println(t.element);
+			printTree(t.right);
+		}
+	}
+
 	//     ____       _            _         __  __      _   _               _
 	//    |  _ \ _ __(_)_   ____ _| |_ ___  |  \/  | ___| |_| |__   ___   __| |___
 	//    | |_) | '__| \ \ / / _` | __/ _ \ | |\/| |/ _ \ __| '_ \ / _ \ / _` / __|
 	//    |  __/| |  | |\ V / (_| | ||  __/ | |  | |  __/ |_| | | | (_) | (_| \__ \
 	//    |_|   |_|  |_| \_/ \__,_|\__\___| |_|  |_|\___|\__|_| |_|\___/ \__,_|___/
 
-	private Comparable elementAt(Node t) {
+	private Comparable elementAt(BinaryNode t) {
 		return t == null ? null : t.element;
 	}
 
-	private Node find(Comparable x, Node t) {
+	private BinaryNode find(Comparable x, BinaryNode t) {
 		if (t == null) {
 			return null;
 		}
@@ -68,7 +77,7 @@ public class BinarySearchTree extends BinaryTree {
 		}
 	}
 
-	private Node findMin(Node t) {
+	private BinaryNode findMin(BinaryNode t) {
 		if (t != null) {
 			while (t.left != t) {
 				t = t.left;
@@ -78,7 +87,7 @@ public class BinarySearchTree extends BinaryTree {
 		return t;
 	}
 
-	private Node findMax(Node t) {
+	private BinaryNode findMax(BinaryNode t) {
 		if (t != null) {
 			while (t.right != t) {
 				t = t.right;
@@ -88,7 +97,7 @@ public class BinarySearchTree extends BinaryTree {
 		return t;
 	}
 
-	private Node insert(Comparable x, Node t) {
+	private BinaryNode insert(Comparable x, BinaryNode t) {
 		if (t == null) {
 			return new BinaryNode(x, null, null);
 		} else if (x.compareTo(t.element) < 0) {
@@ -100,7 +109,7 @@ public class BinarySearchTree extends BinaryTree {
 		return t;
 	}
 
-	private Node remove(Comparable x, Node t) {
+	private BinaryNode remove(Comparable x, BinaryNode t) {
 		if (t == null) {
 			return null;
 		}
@@ -118,12 +127,12 @@ public class BinarySearchTree extends BinaryTree {
 	}
 }
 
-class BinaryNode extends Node {
+class BinaryNode extends Node<BinaryNode> {
 	BinaryNode(Comparable element) {
 		this(element, null, null);
 	}
 
-	BinaryNode(Comparable element, Node left, Node right) {
+	BinaryNode(Comparable element, BinaryNode left, BinaryNode right) {
 		this.element = element;
 		this.left = left;
 		this.right = left;

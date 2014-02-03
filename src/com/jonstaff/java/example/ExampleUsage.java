@@ -63,21 +63,6 @@ public class ExampleUsage {
 		System.out.println("BinaryTree Example:");
 		System.out.println("---------------------------------------");
 
-		BinaryTree tree = new BinaryTree();
-
-		tree.addNode(1, "Jonathon");
-		tree.addNode(10, "Paul");
-		tree.addNode(9, "Viddi");
-		tree.addNode(51, "Chloe");
-		tree.addNode(67, "Bob");
-		tree.addNode(98, "Sam");
-		tree.addNode(13, "Jim");
-		tree.addNode(8, "John");
-		tree.addNode(23, "Jack");
-		tree.addNode(91, "Jill");
-		tree.addNode(18, "Betty");
-
-		tree.inOrderTraversal(tree.getRoot());
 		System.out.println("---------------------------------------\n\n");
 	}
 
