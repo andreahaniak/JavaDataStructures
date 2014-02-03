@@ -6,6 +6,8 @@ import com.jonstaff.java.hashtable.ElfHash;
 import com.jonstaff.java.hashtable.Hashtable;
 import com.jonstaff.java.sort.MergeSort;
 import com.jonstaff.java.sort.QuickSort;
+import com.jonstaff.java.tree.BinaryNode;
+import com.jonstaff.java.tree.BinarySearchTree;
 import com.jonstaff.java.tree.BinaryTree;
 
 public class ExampleUsage {
@@ -62,6 +64,24 @@ public class ExampleUsage {
 	private static void runBinaryTreeExample() {
 		System.out.println("BinaryTree Example:");
 		System.out.println("---------------------------------------");
+
+        BinaryTree<BinaryNode> tree = new BinarySearchTree();
+        tree.insert(17);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(34);
+        tree.insert(112);
+        tree.insert(56);
+        tree.insert(8);
+        tree.insert(40);
+        tree.insert(97);
+        tree.insert(5);
+        tree.insert(117);
+        tree.insert(7);
+        tree.insert(9);
+        tree.insert(113);
+
+        tree.printTree();
 
 		System.out.println("---------------------------------------\n\n");
 	}

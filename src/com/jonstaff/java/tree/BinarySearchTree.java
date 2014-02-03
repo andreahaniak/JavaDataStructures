@@ -127,14 +127,3 @@ public class BinarySearchTree extends BinaryTree<BinaryNode> {
 	}
 }
 
-class BinaryNode extends Node<BinaryNode> {
-	BinaryNode(Comparable element) {
-		this(element, null, null);
-	}
-
-	BinaryNode(Comparable element, BinaryNode left, BinaryNode right) {
-		this.element = element;
-		this.left = left;
-		this.right = left;
-	}
-}
