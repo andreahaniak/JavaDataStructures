@@ -3,19 +3,17 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class ElfHashNew implements HashFunction {
+public class ApHash implements HashFunction {
 	@Override
 	public long hash(String key) {
-		long hash = 0;
-		long x = 0;
+		long hash = 0xAAAAAAAA;
 
 		for (int i = 0; i < key.length(); i++) {
-			hash = (hash << 4) + key.charAt(i);
-
-			if ((x = hash & 0xF0000000L) != 0) {
-				hash ^= (x >> 24);
+			if ((i & 1) == 0) {
+				hash ^= ((hash << 7) ^ key.charAt(i) * (hash >> 3));
+			} else {
+				hash ^= (~((hash << 11) + key.charAt(i) ^ (hash >> 5)));
 			}
-			hash &= ~x;
 		}
 
 		return hash;

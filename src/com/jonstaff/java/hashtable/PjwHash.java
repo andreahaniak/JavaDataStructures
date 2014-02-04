@@ -3,7 +3,7 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class PjwHashNew implements HashFunction {
+public class PjwHash implements HashFunction {
 	@Override
 	public long hash(String key) {
 		long BitsInUnsignedInt = (long) (4 * 8);
