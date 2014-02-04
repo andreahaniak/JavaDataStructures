@@ -3,7 +3,7 @@ package com.jonstaff.java.tree;
 //  Created by jonstaff on 2/1/14.
 //  Adapted from Data Structures & Algorithm Analysis in Java by Mark Allen Weiss
 
-public class AvlTreeNewName extends BinaryTree<AvlNode> {
+public class AvlTree extends BinaryTree<AvlNode> {
 
 	//     ____  _                       _____                __  __      _   _               _
 	//    | __ )(_)_ __   __ _ _ __ _   |_   _| __ ___  ___  |  \/  | ___| |_| |__   ___   __| |___

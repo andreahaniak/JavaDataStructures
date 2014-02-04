@@ -6,7 +6,7 @@ import com.jonstaff.java.hashtable.ElfHash;
 import com.jonstaff.java.hashtable.Hashtable;
 import com.jonstaff.java.sort.MergeSort;
 import com.jonstaff.java.sort.QuickSort;
-import com.jonstaff.java.tree.AvlTreeNewName;
+import com.jonstaff.java.tree.AvlTree;
 import com.jonstaff.java.tree.BinarySearchTree;
 
 public class ExampleUsage {
@@ -87,10 +87,10 @@ public class ExampleUsage {
 	}
 
     private static void runAvlTreeExample() {
-        System.out.println("AvlTreeNewName Example:");
+        System.out.println("AvlTree Example:");
         System.out.println("---------------------------------------");
 
-        AvlTreeNewName tree = new AvlTreeNewName();
+        AvlTree tree = new AvlTree();
         tree.insert(17);
         tree.insert(2);
         tree.insert(1);
