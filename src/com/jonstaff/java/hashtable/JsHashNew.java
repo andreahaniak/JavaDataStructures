@@ -3,15 +3,13 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class FnvHash implements HashFunction {
+public class JsHashNew implements HashFunction {
 	@Override
 	public long hash(String key) {
-		long fnv_prime = 0x811C9DC5;
-		long hash = 0;
+		long hash = 1315423911;
 
 		for (int i = 0; i < key.length(); i++) {
-			hash *= fnv_prime;
-			hash ^= key.charAt(i);
+			hash ^= ((hash << 5) + key.charAt(i) + (hash >> 2));
 		}
 
 		return hash;

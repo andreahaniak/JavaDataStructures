@@ -3,14 +3,17 @@ package com.jonstaff.java.hashtable;
 //  Created by jonstaff on 1/26/14.
 //  Adapted from http://www.partow.net/programming/hashfunctions/
 
-public class BkdrHash implements HashFunction {
+public class ApHashNew implements HashFunction {
 	@Override
 	public long hash(String key) {
-		long seed = 131; // 31 131 1313 13131 131313 etc..
-		long hash = 0;
+		long hash = 0xAAAAAAAA;
 
 		for (int i = 0; i < key.length(); i++) {
-			hash = (hash * seed) + key.charAt(i);
+			if ((i & 1) == 0) {
+				hash ^= ((hash << 7) ^ key.charAt(i) * (hash >> 3));
+			} else {
+				hash ^= (~((hash << 11) + key.charAt(i) ^ (hash >> 5)));
+			}
 		}
 
 		return hash;
